@@ -3,7 +3,7 @@
     <v-container class="fill-height" fluid>
       <!-- vistas -->
       <v-row align="center" justify="center">
-        <v-col cols="12" :xs="10" :md="6">
+        <v-col cols="12" :sm="8" :lg="6">
           <v-text-field
             filled
             v-model="query"
@@ -20,7 +20,8 @@
           v-for="track in tracks"
           cols="12"
           :xs="12"
-          :md="4"
+          :md="6"
+          :lg="4"
           :key="track.id"
         >
           <v-card outlined>
@@ -71,7 +72,7 @@ export default {
     BaseLayout
   },
   data: () => ({
-    query: 'pop',
+    query: '',
     tracks: [],
     items: [
       {
@@ -90,7 +91,7 @@ export default {
   }),
 
   created () {
-    this.search()
+    // this.search()
   },
 
   methods: {
