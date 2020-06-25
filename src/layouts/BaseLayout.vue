@@ -60,16 +60,24 @@
             <span class="title">Spotify</span>
           </v-toolbar-title>
         </v-list-item>
-        <v-list-item v-for="item in items" :key="item.text" link>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.text }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+
+        <!-- bottom -->
+        <v-list-item-group @click="$router.push(botomNav)" v-model="bottomNav" color="light">
+          <v-list-item
+            v-for="item in items"
+            :key="item.path"
+            link
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.meta.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ item.name }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
         <v-subheader class="mt-4 grey--text text--darken-1 text-uppercase"
           >Popular</v-subheader
         >
@@ -109,7 +117,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <!-- vistas -->
-      <slot />
+      <router-view></router-view>
     </v-main>
 
     <!-- Menu en dispositivos moviles -->
@@ -117,11 +125,12 @@
       v-model="bottomNav"
       color="teal"
       v-if="isMobile"
+      @change="$router.push(bottomNav)"
       app
     >
-      <v-btn v-for="item in items" :key="item.icon" :value="item.value">
-        <span>{{ item.text }}</span>
-        <v-icon>{{ item.icon }}</v-icon>
+      <v-btn v-for="item in items" :key="item.meta.icon" :value="item.path">
+        <span>{{ item.name }}</span>
+        <v-icon>{{ item.meta.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
 
@@ -131,16 +140,13 @@
 </template>
 
 <script>
+import items from '@/router/menu'
 export default {
   data () {
     return {
-      bottomNav: 'search',
+      bottomNav: '/search',
       isOpen: false,
-      items: [
-        { icon: 'mdi-home', value: 'home', text: 'Home' },
-        { icon: 'mdi-magnify', value: 'search', text: 'Search' },
-        { icon: 'mdi-heart', value: 'fav', text: 'Favorites' }
-      ],
+      items,
       items2: [
         { picture: 28, text: 'Joseph' },
         { picture: 38, text: 'Apple' },
