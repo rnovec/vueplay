@@ -113,7 +113,12 @@
     </v-main>
 
     <!-- Menu en dispositivos moviles -->
-    <v-bottom-navigation v-model="bottomNav" color="teal" v-if="isMobile" app>
+    <v-bottom-navigation
+      v-model="bottomNav"
+      color="teal"
+      v-if="isMobile"
+      app
+    >
       <v-btn v-for="item in items" :key="item.icon" :value="item.value">
         <span>{{ item.text }}</span>
         <v-icon>{{ item.icon }}</v-icon>
@@ -130,7 +135,6 @@ export default {
   data () {
     return {
       bottomNav: 'search',
-      isMobile: false,
       isOpen: false,
       items: [
         { icon: 'mdi-home', value: 'home', text: 'Home' },
@@ -146,17 +150,12 @@ export default {
       ]
     }
   },
-  beforeDestroy () {
-    if (typeof window != 'undefined') {
-      window.removeEventListener('resize', this.onResize, { passive: true })
-    }
-  },
   mounted () {
-    window.addEventListener('resize', this.onResize, { passive: true })
+    console.log(this.$vuetify.breakpoint)
   },
-  methods: {
-    onResize () {
-      this.isMobile = window.innerWidth < 960
+  computed: {
+    isMobile () {
+      return this.$vuetify.breakpoint.smAndDown
     }
   }
 }
