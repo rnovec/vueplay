@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- barra de opciones o navegador horizontal -->
-    <v-app-bar color="teal" dark flat app>
+    <v-app-bar color="teal" dense dark flat app>
       <!-- <v-btn v-if="!isMobile" icon>
         <v-icon @click="isOpen = !isOpen">
           mdi-chevron-{{ isOpen ? 'left' : 'right' }}
