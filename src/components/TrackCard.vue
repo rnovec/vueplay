@@ -12,15 +12,13 @@
         <img :src="track.album.images[0].url" alt="" />
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="font-weight-bold">{{
-          track.name
-        }}</v-list-item-title>
+        <v-list-item-title>{{ track.name }}</v-list-item-title>
         <v-list-item-subtitle>{{ track.artists[0].name }}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
     <v-card-actions>
-      <v-btn icon>
+      <v-btn small icon>
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
 
@@ -28,9 +26,29 @@
         <v-icon>mdi-play</v-icon></v-btn
       >
 
+      <v-menu light offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn small icon v-on="on" v-bind="attrs">
+            <v-icon>mdi-share</v-icon></v-btn
+          >
+        </template>
+        <v-list dense>
+          <v-list-item v-for="(item, index) in items" :key="index" @click="">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
       <v-spacer></v-spacer>
 
-      <v-btn small icon><v-icon>mdi-open-in-new</v-icon></v-btn>
+      <v-btn link target="_blank" :href="track.external_urls.spotify" small icon
+        ><v-icon>mdi-open-in-new</v-icon></v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
