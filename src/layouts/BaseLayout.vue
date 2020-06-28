@@ -47,7 +47,7 @@
         </v-btn>
       </v-progress-circular>
 
-      <v-btn icon large>
+      <v-btn icon @click="showSettings()" large>
         <v-avatar size="32px" item
           ><img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
         </v-avatar>
@@ -120,7 +120,7 @@
       <!-- Provides the application the proper gutter -->
       <!-- vistas -->
       <router-view></router-view>
-
+      <UserSettings/>
       <Player />
     </v-main>
 
@@ -145,7 +145,9 @@
 <script>
 import items from '@/router/menu'
 import Player from '@/components/Player'
-import { mapState } from 'vuex'
+import UserSettings from '@/components/UserSettings'
+import userMixin from '@/mixins/user'
+import { mapState, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -153,15 +155,13 @@ export default {
       items
     }
   },
-  mounted () {
-    console.log(this.$vuetify.breakpoint)
-  },
   components: {
-    Player
+    Player,
+    UserSettings
   },
+  mixins: [userMixin],
   methods: {
     showPlayer () {
-      
       this.$store.commit('SHOW_PLAYER')
     }
   },

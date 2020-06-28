@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     track: {},
     isPlaying: false,
+    showSettings: false,
     favorites: []
   },
   mutations: {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     SHOW_PLAYER(state) {
       state.isPlaying = true
+    },
+    SHOW_SETTINGS(state) {
+      state.showSettings = !state.showSettings
     }
   },
   actions: {

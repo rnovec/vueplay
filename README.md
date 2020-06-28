@@ -1,4 +1,4 @@
-# appsound
+# Vue + Vuetify Web Player
 
 ## Project setup
 ```
