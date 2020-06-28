@@ -41,7 +41,13 @@
 
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-      <v-progress-circular v-if="!isPlaying && track.name" :rotate="360" :width="15" :value="50" color="teal">
+      <v-progress-circular
+        v-if="!isPlaying && track.name"
+        :rotate="360"
+        :width="15"
+        :value="50"
+        color="teal"
+      >
         <v-btn @click="showPlayer()" icon>
           <v-icon>mdi-play</v-icon>
         </v-btn>
@@ -113,6 +119,13 @@
           >
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block text>
+            <v-icon class="mx-2">mdi-coffee</v-icon>buy me a coffee</v-btn
+          >
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <!-- Contenido de la aplicación -->
@@ -120,7 +133,7 @@
       <!-- Provides the application the proper gutter -->
       <!-- vistas -->
       <router-view></router-view>
-      <UserSettings/>
+      <UserSettings />
       <Player />
     </v-main>
 

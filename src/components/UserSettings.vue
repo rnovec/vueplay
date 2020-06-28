@@ -77,18 +77,15 @@
         </v-list-item>
       </v-list> -->
       <v-list>
-        <v-list-item>
+        <v-list-item two-line link>
           <v-list-item-avatar>
-            <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+            <img src="https://randomuser.me/api/portraits/women/81.jpg" />
           </v-list-item-avatar>
-        </v-list-item>
 
-        <v-list-item link>
           <v-list-item-content>
-            <v-list-item-title class="title">John Leider</v-list-item-title>
-            <v-list-item-subtitle>john@vuetifyjs.com</v-list-item-subtitle>
+            <v-list-item-title>Jane Smith</v-list-item-title>
+            <v-list-item-subtitle>rnovelo.cruz98@gmail.com</v-list-item-subtitle>
           </v-list-item-content>
-
           <v-list-item-action>
             <v-icon>mdi-menu-down</v-icon>
           </v-list-item-action>
