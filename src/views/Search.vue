@@ -16,7 +16,7 @@
     </v-row>
 
     <v-row v-if="isLoading">
-      <v-col v-for="i in 9" cols="12" :xs="12" :md="6" :lg="4" :key="i">
+      <v-col v-for="i in 20" cols="12" :xs="12" :md="6" :lg="4" :key="i">
         <v-skeleton-loader class="mx-auto" type="article"> </v-skeleton-loader>
       </v-col>
     </v-row>
@@ -41,7 +41,7 @@
 <script>
 import TrackCard from '@/components/TrackCard'
 import TrackDetail from '@/components/TrackDetail'
-import { searchTrack } from '@/api/tracks'
+import { mapState } from 'vuex'
 
 export default {
   name: 'App',
@@ -51,23 +51,12 @@ export default {
   },
   data: () => ({
     query: 'rock',
-    isLoading: false,
-    tracks: [],
-    items: [
-      {
-        color: '#1F7087',
-        src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-        title: 'Supermodel',
-        artist: 'Foster the People'
-      },
-      {
-        color: '#952175',
-        src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-        title: 'Halcyon Days',
-        artist: 'Ellie Goulding'
-      }
-    ]
+    isLoading: false
   }),
+
+  computed: {
+    ...mapState(['tracks'])
+  },
 
   created () {
     this.search()
@@ -76,8 +65,7 @@ export default {
   methods: {
     async search () {
       this.isLoading = true
-      const res = await searchTrack(this.query)
-      this.tracks = res.data.tracks.items
+      await this.$store.dispatch('searchTracks', this.query)
       this.isLoading = false
     }
   }

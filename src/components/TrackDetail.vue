@@ -18,8 +18,8 @@
     </v-list-item>
 
     <v-card-actions>
-      <v-btn icon>
-        <v-icon>mdi-heart-outline</v-icon>
+      <v-btn icon @click="addFavorite()">
+        <v-icon>mdi-{{ fav ? 'heart' : 'heart-outline'}}</v-icon>
       </v-btn>
 
       <v-btn small v-if="track.preview_url" @click="setTrack()" icon>

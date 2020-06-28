@@ -18,7 +18,7 @@
     </v-list-item>
 
     <v-card-actions>
-      <v-btn small icon>
+      <v-btn small icon @click="addFavorite()">
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
 
