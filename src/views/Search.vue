@@ -49,7 +49,7 @@ export default {
     TrackDetail
   },
   data: () => ({
-    query: '',
+    query: 'rock',
     isLoading: false,
     tracks: [],
     items: [
@@ -69,7 +69,7 @@ export default {
   }),
 
   created () {
-    // this.search()
+    this.search()
   },
 
   methods: {

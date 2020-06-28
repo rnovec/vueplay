@@ -23,9 +23,8 @@ export function searchArtist (q, offset = 0) {
     method: 'GET',
     params: {
       q,
-      type: 'artitst',
+      type: 'artist',
       offset
     }
   })
 }
-

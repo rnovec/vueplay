@@ -41,8 +41,8 @@
 
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-      <v-progress-circular :rotate="360" :width="15" :value="50" color="teal">
-        <v-btn icon>
+      <v-progress-circular v-if="!isPlaying && track.name" :rotate="360" :width="15" :value="50" color="teal">
+        <v-btn @click="showPlayer()" icon>
           <v-icon>mdi-play</v-icon>
         </v-btn>
       </v-progress-circular>
@@ -120,6 +120,8 @@
       <!-- Provides the application the proper gutter -->
       <!-- vistas -->
       <router-view></router-view>
+
+      <Player />
     </v-main>
 
     <!-- Menu en dispositivos moviles -->
@@ -142,6 +144,8 @@
 
 <script>
 import items from '@/router/menu'
+import Player from '@/components/Player'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -152,7 +156,17 @@ export default {
   mounted () {
     console.log(this.$vuetify.breakpoint)
   },
+  components: {
+    Player
+  },
+  methods: {
+    showPlayer () {
+      
+      this.$store.commit('SHOW_PLAYER')
+    }
+  },
   computed: {
+    ...mapState(['track', 'isPlaying']),
     isMobile () {
       return this.$vuetify.breakpoint.smAndDown
     }
