@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container :class="{ 'fill-height': !isLoading }" fluid>
     <!-- vistas -->
     <v-row align="center" justify="center">
       <v-col cols="12" :sm="8" :lg="6">
@@ -12,6 +12,16 @@
           label="Search songs..."
           rounded
         ></v-text-field>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="isLoading">
+      <v-col v-for="i in 9" cols="12" :xs="12" :md="6" :lg="4" :key="i">
+        <v-skeleton-loader
+          class="mx-auto"
+          type="article"
+        >
+        </v-skeleton-loader>
       </v-col>
     </v-row>
     <v-row v-if="tracks.length">
@@ -40,6 +50,7 @@ export default {
   },
   data: () => ({
     query: '',
+    isLoading: false,
     tracks: [],
     items: [
       {
@@ -63,8 +74,10 @@ export default {
 
   methods: {
     async search () {
+      this.isLoading = true
       const res = await searchTrack(this.query)
       this.tracks = res.data.tracks.items
+      this.isLoading = false
     }
   }
 }

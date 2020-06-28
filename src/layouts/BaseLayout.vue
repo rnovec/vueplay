@@ -41,6 +41,11 @@
 
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
+      <v-progress-circular :rotate="360" :width="15" :value="50" color="teal">
+        <v-btn icon>
+          <v-icon>mdi-play</v-icon>
+        </v-btn>
+      </v-progress-circular>
 
       <v-btn icon large>
         <v-avatar size="32px" item
@@ -52,7 +57,7 @@
     <!-- menu en escritorio -->
     <v-navigation-drawer permanent v-model="isOpen" v-if="!isMobile" app>
       <v-list dense>
-        <v-list-item v-if="!isMobile">
+        <v-list-item class="mb-3" v-if="!isMobile">
           <v-icon class="mx-4" large>
             mdi-spotify
           </v-icon>
@@ -61,37 +66,34 @@
           </v-toolbar-title>
         </v-list-item>
 
-        <!-- bottom -->
-        <v-list-item-group @click="$router.push(botomNav)" v-model="bottomNav" color="light">
-          <v-list-item
-            v-for="item in items"
-            :key="item.path"
-            link
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.meta.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ item.name }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
+        <v-list-item
+          v-for="item in items"
+          :to="item.path"
+          :key="item.path"
+          link
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.meta.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ item.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-subheader class="mt-4 grey--text text--darken-1 text-uppercase"
           >Popular</v-subheader
         >
         <v-list>
-          <v-list-item v-for="item in items2" :key="item.text" link>
+          <v-list-item link>
             <v-list-item-avatar>
               <img
-                :src="
-                  `https://randomuser.me/api/portraits/men/${item.picture}.jpg`
-                "
+                src="https://randomuser.me/api/portraits/men/28.jpg"
                 alt=""
               />
             </v-list-item-avatar>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
+            <v-list-item-title>Joseph</v-list-item-title>
           </v-list-item>
         </v-list>
         <v-list-item class="mt-4" link>
@@ -121,14 +123,13 @@
     </v-main>
 
     <!-- Menu en dispositivos moviles -->
-    <v-bottom-navigation
-      v-model="bottomNav"
-      color="teal"
-      v-if="isMobile"
-      @change="$router.push(bottomNav)"
-      app
-    >
-      <v-btn v-for="item in items" :key="item.meta.icon" :value="item.path">
+    <v-bottom-navigation active-class color="teal" v-if="isMobile" app>
+      <v-btn
+        v-for="item in items"
+        :to="item.path"
+        :key="item.meta.icon"
+        :value="item.path"
+      >
         <span>{{ item.name }}</span>
         <v-icon>{{ item.meta.icon }}</v-icon>
       </v-btn>
@@ -144,16 +145,8 @@ import items from '@/router/menu'
 export default {
   data () {
     return {
-      bottomNav: '/search',
       isOpen: false,
-      items,
-      items2: [
-        { picture: 28, text: 'Joseph' },
-        { picture: 38, text: 'Apple' },
-        { picture: 48, text: 'Xbox Ahoy' },
-        { picture: 58, text: 'Nokia' },
-        { picture: 78, text: 'MKBHD' }
-      ]
+      items
     }
   },
   mounted () {

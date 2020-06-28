@@ -16,3 +16,16 @@ export function searchTrack (q, offset = 0) {
     }
   })
 }
+
+export function searchArtist (q, offset = 0) {
+  return request({
+    url: '/search',
+    method: 'GET',
+    params: {
+      q,
+      type: 'artitst',
+      offset
+    }
+  })
+}
+
