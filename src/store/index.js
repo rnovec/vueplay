@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     track: {},
-    isPlaying: false
+    isPlaying: false,
+    favorites: []
   },
   mutations: {
     SET_TRACK(state, track) {

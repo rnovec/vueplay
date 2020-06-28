@@ -18,7 +18,7 @@ export default [
   {
     path: '/favorites',
     name: 'Favorites',
-    component: () => import('../views/Home.vue'),
+    component: () => import('../views/Favorites.vue'),
     meta: {
       icon: 'mdi-heart'
     }
