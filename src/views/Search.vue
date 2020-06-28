@@ -17,11 +17,7 @@
 
     <v-row v-if="isLoading">
       <v-col v-for="i in 9" cols="12" :xs="12" :md="6" :lg="4" :key="i">
-        <v-skeleton-loader
-          class="mx-auto"
-          type="article"
-        >
-        </v-skeleton-loader>
+        <v-skeleton-loader class="mx-auto" type="article"> </v-skeleton-loader>
       </v-col>
     </v-row>
     <v-row v-if="tracks.length">
@@ -33,20 +29,25 @@
         :lg="4"
         :key="track.id"
       >
-        <TrackDetail :track="track" />
+        <component
+          :is="$vuetify.breakpoint.mobile ? 'TrackDetail' : 'TrackCard'"
+          :track="track"
+        ></component>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import TrackCard from '@/components/TrackCard'
 import TrackDetail from '@/components/TrackDetail'
 import { searchTrack } from '@/api/tracks'
 
 export default {
   name: 'App',
   components: {
-    TrackDetail
+    TrackDetail,
+    TrackCard
   },
   data: () => ({
     query: 'rock',
