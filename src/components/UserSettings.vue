@@ -84,7 +84,9 @@
 
           <v-list-item-content>
             <v-list-item-title>Jane Smith</v-list-item-title>
-            <v-list-item-subtitle>rnovelo.cruz98@gmail.com</v-list-item-subtitle>
+            <v-list-item-subtitle
+              >rnovelo.cruz98@gmail.com</v-list-item-subtitle
+            >
           </v-list-item-content>
           <v-list-item-action>
             <v-icon>mdi-menu-down</v-icon>
@@ -101,6 +103,15 @@
 
             <v-list-item-content>
               <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/login">
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Sign out</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -125,8 +136,7 @@ export default {
         { text: 'Starred', icon: 'mdi-star' },
         { text: 'Recent', icon: 'mdi-history' },
         { text: 'Offline', icon: 'mdi-check-circle' },
-        { text: 'Settings', icon: 'mdi-cog' },
-        { text: 'Sign out', icon: 'mdi-logout' }
+        { text: 'Settings', icon: 'mdi-cog' }
       ]
     }
   },

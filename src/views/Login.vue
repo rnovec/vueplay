@@ -25,7 +25,7 @@
       </v-list-item-content>
     </v-list-item>
     <v-list-item>
-      <v-btn depressed block color="teal">
+      <v-btn to="/" depressed block color="teal">
         <v-icon left>mdi-play</v-icon> Get Started
       </v-btn>
     </v-list-item>

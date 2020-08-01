@@ -138,7 +138,7 @@
     </v-main>
 
     <!-- Menu en dispositivos moviles -->
-    <v-bottom-navigation active-class color="teal" v-if="isMobile" app>
+    <v-bottom-navigation active-class shift color="teal" v-if="isMobile" app>
       <v-btn
         v-for="item in items"
         :to="item.path"
